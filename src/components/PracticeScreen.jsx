@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import { getPetProgress } from '../context/AppContext'
+import { useAuth } from '../context/AuthContext'
 import PracticeTimer from './PracticeTimer'
 import Metronome from './Metronome'
 import Recorder from './Recorder'
@@ -10,6 +11,8 @@ import './PracticeScreen.css'
 
 export default function PracticeScreen() {
   const { logSession, currentSkin, currentPet } = useApp()
+  const { studentData } = useAuth()
+  const firstName = studentData?.name?.split(' ')[0] || ''
   const [lastEarned,      setLastEarned]      = useState(null)
   const [micOwner,        setMicOwner]        = useState(null)
   const [tunerOpen,       setTunerOpen]       = useState(false)
@@ -34,7 +37,7 @@ export default function PracticeScreen() {
         <div className="header-logo">🎺</div>
         <div>
           <h1 className="header-title">Practice Time</h1>
-          <p className="header-sub">Let's make some music!</p>
+          <p className="header-sub">{firstName ? `Ready to practice, ${firstName}? 🎶` : "Let's make some music!"}</p>
         </div>
         {currentPet && <PetBadge pet={currentPet} />}
       </header>

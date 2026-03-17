@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useApp } from '../context/AppContext'
+import { useAuth } from '../context/AuthContext'
 import GameModal from './GameModal'
 import './ShopScreen.css'
 
@@ -10,6 +11,8 @@ export default function ShopScreen() {
     pets, activePet, setActivePet, buyPet,
     streakSavers, buyStreakSaver,
   } = useApp()
+  const { studentData } = useAuth()
+  const firstName = studentData?.name?.split(' ')[0] || ''
 
   const [toast,       setToast]       = useState(null)
   const [playingGame, setPlayingGame] = useState(null)
@@ -48,8 +51,8 @@ export default function ShopScreen() {
       <header className="shop-screen__header">
         <div className="header-logo">🎁</div>
         <div>
-          <h1 className="header-title">Rewards</h1>
-          <p className="header-sub">Spend your practice points</p>
+          <h1 className="header-title">{firstName ? `${firstName}'s Rewards` : 'Rewards'}</h1>
+          <p className="header-sub">{firstName ? `You've earned this, ${firstName}! 🏆` : 'Spend your practice points'}</p>
         </div>
         <div className="shop-points">
           <span className="shop-points__val">⭐ {points.toLocaleString()}</span>
