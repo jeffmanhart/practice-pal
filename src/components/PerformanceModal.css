@@ -1,0 +1,204 @@
+/* ── Overlay ─────────────────────────────────────────────── */
+.perf-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+  animation: perfFadeIn 0.35s ease;
+}
+
+@keyframes perfFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Stage lights ────────────────────────────────────────── */
+.perf-lights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.perf-light {
+  position: absolute;
+  top: -30px;
+  width: 6px;
+  border-radius: 0 0 100% 100%;
+  transform-origin: top center;
+  opacity: 0.55;
+  animation: sweepLight 2.2s ease-in-out infinite alternate;
+}
+
+.perf-light:nth-child(1)  { left: 8%;  height: 65vh; background: linear-gradient(180deg, #ff4d4d 0%, transparent 100%); animation-delay: 0s;    animation-duration: 2.0s; }
+.perf-light:nth-child(2)  { left: 18%; height: 70vh; background: linear-gradient(180deg, #ff9900 0%, transparent 100%); animation-delay: 0.3s;  animation-duration: 2.4s; }
+.perf-light:nth-child(3)  { left: 30%; height: 60vh; background: linear-gradient(180deg, #ffe600 0%, transparent 100%); animation-delay: 0.1s;  animation-duration: 1.9s; }
+.perf-light:nth-child(4)  { left: 42%; height: 72vh; background: linear-gradient(180deg, #33ff77 0%, transparent 100%); animation-delay: 0.5s;  animation-duration: 2.2s; }
+.perf-light:nth-child(5)  { left: 54%; height: 68vh; background: linear-gradient(180deg, #00cfff 0%, transparent 100%); animation-delay: 0.2s;  animation-duration: 2.6s; }
+.perf-light:nth-child(6)  { left: 66%; height: 64vh; background: linear-gradient(180deg, #a855f7 0%, transparent 100%); animation-delay: 0.4s;  animation-duration: 2.1s; }
+.perf-light:nth-child(7)  { left: 78%; height: 70vh; background: linear-gradient(180deg, #f472b6 0%, transparent 100%); animation-delay: 0.6s;  animation-duration: 2.3s; }
+.perf-light:nth-child(8)  { left: 88%; height: 62vh; background: linear-gradient(180deg, #ff4d4d 0%, transparent 100%); animation-delay: 0.15s; animation-duration: 1.8s; }
+
+@keyframes sweepLight {
+  from { transform: rotate(-18deg); opacity: 0.4; }
+  to   { transform: rotate(18deg);  opacity: 0.7; }
+}
+
+/* ── Content ─────────────────────────────────────────────── */
+.perf-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px 32px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+}
+
+.perf-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 0 24px rgba(255,215,0,0.7);
+  animation: perfPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes perfPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.perf-points {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255,215,0,0.5);
+  animation: perfPop 0.5s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+/* ── Level-up banner ─────────────────────────────────────── */
+.perf-levelup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(168,85,247,0.35), rgba(236,72,153,0.35));
+  border: 2px solid rgba(168,85,247,0.7);
+  border-radius: 16px;
+  padding: 12px 20px;
+  width: 100%;
+  animation: levelUpSlide 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  box-shadow: 0 0 24px rgba(168,85,247,0.4);
+}
+
+@keyframes levelUpSlide {
+  from { transform: scale(0.6) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+
+.perf-levelup__icon {
+  font-size: 2.4rem;
+  animation: levelUpSpin 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes levelUpSpin {
+  from { transform: scale(0) rotate(-180deg); }
+  to   { transform: scale(1) rotate(0deg); }
+}
+
+.perf-levelup__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.perf-levelup__name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #d8b4fe;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.perf-levelup__label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.perf-levelup__label strong {
+  color: #ffd700;
+}
+
+/* ── Pet crowd section ───────────────────────────────────── */
+.perf-crowd {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  animation: perfPop 0.5s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.perf-pet {
+  font-size: 3.5rem;
+  animation: petBounce 0.45s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(255,215,0,0.6));
+}
+
+@keyframes petBounce {
+  from { transform: translateY(0) rotate(-8deg); }
+  to   { transform: translateY(-14px) rotate(8deg); }
+}
+
+.perf-crowd-emoji {
+  font-size: 1.6rem;
+  animation: petBounce 0.4s ease-in-out infinite alternate;
+}
+
+.perf-crowd-emoji:nth-child(2) { animation-delay: 0.05s; }
+.perf-crowd-emoji:nth-child(3) { animation-delay: 0.10s; }
+.perf-crowd-emoji:nth-child(4) { animation-delay: 0.15s; }
+.perf-crowd-emoji:nth-child(5) { animation-delay: 0.20s; }
+
+.perf-pet-name {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+}
+
+/* ── Note burst ──────────────────────────────────────────── */
+.perf-notes {
+  font-size: 2rem;
+  letter-spacing: 8px;
+  animation: notePulse 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes notePulse {
+  from { opacity: 0.6; transform: scale(0.95); }
+  to   { opacity: 1.0; transform: scale(1.05); }
+}
+
+/* ── Close button ────────────────────────────────────────── */
+.perf-close {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 30px;
+  padding: 12px 36px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  animation: perfPop 0.5s 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.perf-close:hover  { background: rgba(255,255,255,0.25); }
+.perf-close:active { transform: scale(0.96); }

@@ -1,0 +1,47 @@
+.auth-loading {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0e1a;
+  font-size: 3rem;
+  animation: authLoadPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes authLoadPulse {
+  from { opacity: 0.4; transform: scale(0.9); }
+  to   { opacity: 1.0; transform: scale(1.1); }
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+/* Subtle pill button for students to switch portals */
+.portal-switch-pill {
+  position: fixed;
+  bottom: 68px;   /* sits just above the nav bar */
+  right: 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #6e7681;
+  font-size: 0.72rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 50;
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+  pointer-events: auto;
+}
+.portal-switch-pill:hover {
+  opacity: 1;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}

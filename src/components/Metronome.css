@@ -1,0 +1,188 @@
+.metronome {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metronome__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metronome__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Beat dots */
+.metronome__beats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.beat-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 2px solid #333;
+  transition: background 0.06s, box-shadow 0.06s, transform 0.06s;
+}
+
+.beat-dot--accent {
+  border-color: var(--accent);
+}
+
+.beat-dot--active {
+  background: var(--beat-color);
+  box-shadow: 0 0 12px var(--beat-color);
+  transform: scale(1.25);
+}
+
+.beat-dot--accent.beat-dot--active {
+  background: #fff;
+  box-shadow: 0 0 16px #fff;
+}
+
+/* BPM */
+.metronome__bpm-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+}
+
+.metronome__bpm-input {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--beat-color);
+  letter-spacing: -1px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  outline: none;
+  width: 3.2ch;
+  font-family: inherit;
+  /* hide spinner arrows */
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.metronome__bpm-input::-webkit-outer-spin-button,
+.metronome__bpm-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.metronome__bpm-input:focus {
+  border-bottom-color: var(--beat-color);
+}
+
+.metronome__bpm-unit {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  align-self: center;
+}
+
+.metronome__slider {
+  width: 100%;
+  accent-color: var(--accent);
+  height: 6px;
+  cursor: pointer;
+}
+
+.metronome__bpm-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Time signature */
+.metronome__timesig {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.timesig-btn {
+  background: var(--surface2);
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.timesig-btn:hover {
+  background: var(--accent2);
+  color: var(--text);
+}
+
+.timesig-btn--active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Controls */
+.metronome__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.tap-btn {
+  flex: 1;
+  background: var(--surface2);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.tap-btn:active {
+  transform: scale(0.96);
+  background: #2a2a50;
+}
+
+.play-btn {
+  flex: 1;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.play-btn:hover {
+  background: #c73a52;
+}
+
+.play-btn--stop {
+  background: #333;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.play-btn--stop:hover {
+  background: #1a1a1a;
+}
+
+.play-btn:active {
+  transform: scale(0.96);
+}

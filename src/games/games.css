@@ -1,0 +1,145 @@
+.game-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.game-canvas {
+  border-radius: 12px;
+  display: block;
+  touch-action: none;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.game-stat {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.game-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.game-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* ── Melody Tap overlays ──────────────────────────────────── */
+.melodytap-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(8, 15, 26, 0.88);
+  border-radius: 12px;
+  padding: 24px 20px;
+  backdrop-filter: blur(4px);
+}
+
+.melodytap-overlay__subtitle {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.melodytap-overlay__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 0;
+}
+
+.melodytap-overlay__score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.melodytap-overlay__combo {
+  font-size: 0.9rem;
+  color: #4ade80;
+  margin: 0 0 8px;
+}
+
+.melodytap-song-btn {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.melodytap-song-btn:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-1px);
+}
+.melodytap-song-btn--ghost {
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.6);
+}
+
+.melodytap-song-btn__emoji { font-size: 1.2rem; }
+.melodytap-song-btn__name  { flex: 1; text-align: left; }
+.melodytap-song-btn__best  {
+  font-size: 0.78rem;
+  color: #ffd700;
+  white-space: nowrap;
+}
+
+.melodytap-complete__stars {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.melodytap-star {
+  font-size: 2.2rem;
+  color: rgba(255,255,255,0.18);
+  line-height: 1;
+  transition: color 0.2s;
+}
+.melodytap-star--lit {
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255,215,0,0.7);
+}
+
+.melodytap-complete__stats {
+  display: flex;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 4px;
+}
+
+.melodytap-complete__newbest {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin: 0;
+  letter-spacing: 0.03em;
+}

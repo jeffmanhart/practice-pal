@@ -1,0 +1,44 @@
+.studio-screen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.studio-screen__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.studio-screen__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 560px) {
+  .studio-screen__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shared conflict banner — used by both Tuner and Recorder */
+.studio-conflict {
+  background: #1e1a10;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f59e0b;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

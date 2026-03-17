@@ -1,0 +1,30 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f0f1a;
+  --surface: #1a1a2e;
+  --surface2: #16213e;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --text: #eaeaea;
+  --text-muted: #888;
+  --radius: 16px;
+  --beat-color: #e94560;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
