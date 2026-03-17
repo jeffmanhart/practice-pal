@@ -161,8 +161,8 @@ export function AppProvider({ children }) {
   useEffect(() => { localStorage.setItem('pr_streakSavers', JSON.stringify(streakSavers))}, [streakSavers])
   useEffect(() => { localStorage.setItem('pr_savedDays',    JSON.stringify(savedDays))   }, [savedDays])
 
-  // When a student logs in, seed points/sessions/streak from Firestore so the
-  // server is always the source of truth (overrides any stale localStorage cache)
+  // When a student logs in, seed all state from Firestore so the server is
+  // always the source of truth (overrides any stale localStorage cache)
   useEffect(() => {
     if (!studentUser || !studentData?.classCode || !firebaseReady || !db) return
     const uid = studentUser.uid
@@ -170,12 +170,28 @@ export function AppProvider({ children }) {
     getDoc(doc(db, 'classes', code, 'students', uid)).then(snap => {
       if (!snap.exists()) return
       const d = snap.data()
+      // Core practice stats
       if (d.points   !== undefined) setPoints(d.points)
       if (d.sessions !== undefined) setSessions(d.sessions)
-      if (d.streak   !== undefined) {
-        // streak lives in savedDays indirectly; update points/sessions is enough
-        // for the teacher view — streak recalculates from sessions on the student side
+      // Shop rewards — merge owned ids from Firestore into full item arrays
+      if (d.ownedSkins) {
+        setSkins(prev => prev.map(s => ({
+          ...s, owned: s.cost === 0 || d.ownedSkins.includes(s.id),
+        })))
       }
+      if (d.activeSkin) setActiveSkin(d.activeSkin)
+      if (d.ownedGames) {
+        setGames(prev => prev.map(g => ({
+          ...g, owned: d.ownedGames.includes(g.id),
+        })))
+      }
+      if (d.ownedPets) {
+        setPets(prev => prev.map(p => {
+          const saved = d.ownedPets.find(op => op.id === p.id)
+          return saved ? { ...p, owned: true, xp: saved.xp ?? p.xp } : p
+        }))
+      }
+      if (d.activePet !== undefined) setActivePet(d.activePet)
     }).catch(() => {})
   }, [studentUser?.uid])
 
