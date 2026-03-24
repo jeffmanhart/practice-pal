@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth }      from 'firebase/auth'
+import { getAuth, setPersistence, browserLocalPersistence, inMemoryPersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage }   from 'firebase/storage'
 
@@ -28,3 +28,12 @@ const app        = firebaseReady ? initializeApp(firebaseConfig) : null
 export const auth    = firebaseReady ? getAuth(app)               : null
 export const db      = firebaseReady ? getFirestore(app)          : null
 export const storage = firebaseReady ? getStorage(app)            : null
+
+// Amazon Silk (Fire tablet) and some older browsers have broken IndexedDB
+// implementations. Try localStorage persistence first; fall back to in-memory
+// so auth always works regardless of the browser's storage support.
+if (auth) {
+  setPersistence(auth, browserLocalPersistence).catch(() => {
+    setPersistence(auth, inMemoryPersistence).catch(() => {})
+  })
+}

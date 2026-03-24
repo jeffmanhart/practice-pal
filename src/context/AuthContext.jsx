@@ -263,8 +263,17 @@ export function AuthProvider({ children }) {
         }
       }
       // onAuthStateChanged will set studentUser/studentData
-    } catch {
-      setStudentAuthError('Incorrect email or password.')
+    } catch (e) {
+      const code = e?.code || ''
+      if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') {
+        setStudentAuthError('Incorrect email or password.')
+      } else if (code === 'auth/network-request-failed') {
+        setStudentAuthError('Network error — check your internet connection and try again.')
+      } else if (code === 'auth/too-many-requests') {
+        setStudentAuthError('Too many attempts. Please wait a few minutes and try again.')
+      } else {
+        setStudentAuthError('Sign-in failed. Please try again.')
+      }
     }
     setStudentAuthLoading(false)
   }
